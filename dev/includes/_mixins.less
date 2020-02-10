@@ -1,0 +1,124 @@
+/* less-mixins.less v1.3.0 | MIT License | github.com/randybruder/_s_starter */
+
+/* LESS Mixins
+	========================================================================== */
+
+/**
+ * @font-face LESS Mixin
+ * use: .font-face(
+ *   @font-family, // name
+ *   @file-path,   // absolute/relative URL to font files, including filename without extension
+ *   @font-weight, // light/normal/bold/inherit | 300/400/700
+ *   @font-style   // italic/normal/inherit
+ * )
+ */
+.font-face(@font-family; @file-path; @font-weight:normal; @font-style:normal) {
+	@font-face {
+		font-family: @font-family;
+		src: url('@{file-path}.woff2') format('woff2'),
+			  url('@{file-path}.woff') format('woff');
+		font-weight: @font-weight;
+		font-style: @font-style;
+	}
+}
+
+/**
+ * font LESS Mixin
+ * use: .font(
+ *   @font-family, // name
+ *   @file-size,   // any unit/inherit
+ *   @font-weight, // light/normal/bold/inherit | 300/400/700
+ *   @font-style   // italic/normal/inherit
+ * )
+ */
+.font(@font-family; @font-size:inherit; @font-weight:normal; @font-style:normal){
+	font-family: @font-family;
+	font-size: @font-size;
+	font-weight: @font-weight;
+	font-style: @font-style;
+}
+
+/**
+ * Two mixins for targeting a specific class on the <body> or <html> tags
+ * When using, don't include quotes around the class
+ */
+.body(@class; @rules) {
+	body.@{class} & { @rules(); }
+}
+
+.html(@class; @rules) {
+	html.@{class} & { @rules(); }
+}
+
+/**
+ * Mobile specific styles
+ */
+.mobile(@rules) {
+	@media (max-width: @max-width-mobile) {
+		@rules();
+	}
+}
+
+/**
+ * Tablet specific styles
+ */
+.tablet(@rules) {
+	@media (max-width: @max-width-tablet) {
+		@rules();
+	}
+}
+
+/**
+ * Print specific styles
+ */
+.print(@rules) {
+	@media print {
+		@rules();
+	}
+}
+
+/**
+ * Media query for macOS Mojave Dark Mode (currently only supported in Safari Technology Preview, will be supported in Safari in macOS 10.14.4+)
+ */
+.darkmode(@rules) {
+	@media (prefers-color-scheme: dark) {
+	  @rules();
+	}
+}
+
+/**
+ * Media query for users with the Reduced Motion setting enabled
+ */
+.reducedmotion(@rules) {
+	@media (prefers-reduced-motion: reduce) {
+	  @rules();
+	}
+}
+
+/**
+ * Media query for users with the Reduced Transparency setting enabled
+ */
+.reducedtransparency(@rules) {
+	@media (prefers-reduced-transparency: reduce) {
+	  @rules();
+	}
+}
+
+/**
+ * Media query for users using Reduced Motion
+ */
+.invertedcolors(@rules) {
+	@media (inverted-colors: inverted) {
+	  @rules();
+	}
+}
+
+/**
+ * Mixin for hiding a certain element on Wordpress if the user isn't logged in (for development testing.)
+ */
+.logged-in() {
+	display: none;
+	.body(logged-in; {
+		display: block;
+	});
+}
