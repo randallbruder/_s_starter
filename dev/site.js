@@ -2,11 +2,15 @@
  * File site.js.
  *
  */
- 
-/* globals jQuery*/
 
 jQuery(document).ready(function($) {
 	
-	/* Add jQuery code here */
+	// Check all links for external URLs
+    $('a').each(function() {
+		var a = new RegExp('/' + window.location.host + '/');
+		if (!a.test(this.href)) {
+			$(this).addClass("external-link");
+		}
+    });
 	
 });
