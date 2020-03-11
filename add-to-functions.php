@@ -71,7 +71,8 @@ add_action('init', 'custom_editor_styles');
 
 
 /**
- * Hanging punctuation
+ * Hanging punctuation $content filter
+ * Will 
  */
  
 function hanging_punctuation($content){
@@ -100,7 +101,11 @@ function hanging_punctuation($content){
 	 */
 	
 	// Check for special characters that are at the start of a word, but ignore anything between a < and a >
-	$content = preg_replace_callback('/<[^>]*>(*SKIP)(*F)|([ \t\xA0])([\"\'“”‘’«‹„‚\(\-–—])([^ \t\xA0\<]+)/', function($m) use($hanging_punctuation_map) {
+	
+	// I should invert this: instead run a foreach on the punctuation map, and then use a preg_replace on each punctualtion type
+	// @link https://www.php.net/manual/en/function.preg-replace.php
+	
+	$content = preg_replace_callback('/<[^>]*>(*SKIP)(*F)|([\s])([\"\'“”‘’«‹„‚\(\-–—\[])([^\s\<]+)/', function($m) use($hanging_punctuation_map) {
 		foreach ($hanging_punctuation_map as $char => $value) {
 			if (strpos($m[2].$m[3], $char) !== false && strpos($m[2].$m[3], $char) == 0) {
 				$class = $value;

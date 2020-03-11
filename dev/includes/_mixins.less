@@ -51,6 +51,16 @@
 }
 
 /**
+ * Smart watch specific styles
+ * @link https://yesviz.com/devices/apple-watch-series-4-44mm/
+ */
+.watch(@rules) {
+	@media only screen (max-width: 319px) {
+		@rules();
+	}
+}
+
+/**
  * Mobile specific styles
  */
 .mobile(@rules) {
