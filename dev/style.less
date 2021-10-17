@@ -11,44 +11,28 @@ Text Domain:
 Tags:
 */
 
-@import "includes/_accessibility.less";
+/* Abstracts */
+@import "includes/abstracts/_mixin-library.less";
+@import "includes/abstracts/_mixins.less";
+@import "includes/abstracts/_variables.less";
+
+/* Base */
+@import "includes/base/_normalize.less";
+@import "includes/base/_accessibility.less";
+@import "includes/base/_hanging-punctuation.less";
+@import "includes/base/_webfonts.less";
+@import "includes/base/_typography.less";
+
+/* Components */
+@import "includes/components/*.less";
+
+/* Layout */
+
+/* Pages */
+
 @import "includes/_normalize.less";
 @import "includes/_mixins.less";
 @import "includes/_variables.less";
 @import "includes/_fonts.less";
 @import "includes/_text.less";
 @import "includes/_hanging-punctuation.less";
-
-html {
-	-webkit-font-smoothing: antialiased;
-	-moz-font-smoothing: greyscale;
-	-moz-osx-font-smoothing: grayscale;
-	font-smooth: always;
-	font-kerning: normal;
-	font-feature-settings: 'kern' 1;
-}
-
-
-/* ----------------------------------------------------------------------------------------------------------
--- Universals -----------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------------- */
-
-
-
-/* ----------------------------------------------------------------------------------------------------------
--- Header ---------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------------- */
-
-
-
-/* ----------------------------------------------------------------------------------------------------------
--- Content --------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------------- */
-
-
-
-/* ----------------------------------------------------------------------------------------------------------
--- Footer --------------------------------------------------------------------------------------------------
----------------------------------------------------------------------------------------------------------- */
-
-
