@@ -13,6 +13,19 @@
  * @link https://developer.wordpress.org/block-editor/tutorials/block-tutorial/writing-your-first-block-type/
  */
 
+
+/**
+* Add styles to admin
+*/
+
+// Callback function to insert 'styleselect' into the $buttons array
+function my_mce_buttons_2( $buttons ) {
+	array_unshift( $buttons, 'styleselect' );
+	return $buttons;
+}
+// Register our callback to the appropriate filter
+add_filter( 'mce_buttons_2', 'my_mce_buttons_2' );
+
 function my_mce_before_init_insert_formats( $init_array ) {
 
 // Define the style_formats array
@@ -57,78 +70,15 @@ function load_admin_style() {
 add_action( 'admin_enqueue_scripts', 'load_admin_style' );
 
 
-
 /**
- * Add styles to editor
- * @link https://developer.wordpress.org/block-editor/developers/themes/theme-support/
+ * Add a stylesheet to the Gutenberg editor
+ * @link: https://rudrastyh.com/gutenberg/css.html 
  */
-function custom_editor_styles() {
+function gutenberg_css() {
 	add_theme_support('editor-styles');
 	add_editor_style('editor.css');
 }
-add_action('init', 'custom_editor_styles');
+add_action('after_setup_theme', 'gutenberg_css');
 
-
-
-/**
- * Hanging punctuation $content filter
- * Will 
- */
- 
-function hanging_punctuation($content){
-	$hanging_punctuation_map = [
-		'"' => "quot",
-		"'" => "apos",
-		"“" => "ldquo",
-		"”" => "rdquo",
-		"‘" => "lsquo",
-		"’" => "rsquo",
-		"«" => "laquo",
-		"‹" => "lsaquo",
-		"„" => "bdquo",
-		"‚" => "sbquo",
-		"(" => "lparen",
-		"[" => "lbracket",
-		"-" => "hyphen",
-		"–" => "ndash",
-		"—" => "mdash",
-	];
-	
-	/* TO DO:
-	   • wptexturize causes straight quotes to not get wrapped at all
-	   ✓ inline CSS can be caught by the regex, like: <div style="position: absolute; left: -5000px;" aria-hidden="true">
-	   • adding the "starts-with" class would fail if the <p> tag already has a class on it (like accidentally pasted into WordPress)
-	 */
-	
-	// Check for special characters that are at the start of a word, but ignore anything between a < and a >
-	
-	// I should invert this: instead run a foreach on the punctuation map, and then use a preg_replace on each punctualtion type
-	// @link https://www.php.net/manual/en/function.preg-replace.php
-	
-	$content = preg_replace_callback('/<[^>]*>(*SKIP)(*F)|([\s])([\"\'“”‘’«‹„‚\(\-–—\[])([^\s\<]+)/', function($m) use($hanging_punctuation_map) {
-		foreach ($hanging_punctuation_map as $char => $value) {
-			if (strpos($m[2].$m[3], $char) !== false && strpos($m[2].$m[3], $char) == 0) {
-				$class = $value;
-			}
-		}
-		return '<span class="s-' . $class . '">' . $m[1] . '</span><span class="h-' . $class . '">' . $m[2] . $m[3] . '</span>';
-	},
-	$content);
-	
-	// Check for special characters that are at the start of a paragraph
-	$content = preg_replace_callback('/(\<p[^\>]*\>(\<[^\>]+\>)?)([\"\'“”‘’«‹„‚\(\[\-–—])([^ \t\xA0\<]+)/', function($m) use($hanging_punctuation_map) {
-		foreach ($hanging_punctuation_map as $char => $value) {
-			if (strpos($m[3].$m[4], $char) !== false && strpos($m[3].$m[4], $char) == 0) {
-				$class = $value;
-			}
-		}
-		return substr_replace($m[0], ' class="starts-with-' . $class . '"', 2, 0);
-	},
-	$content);
-				
-	return $content;
-}
-
-add_filter('the_content', 'hanging_punctuation');
 
 ?>
