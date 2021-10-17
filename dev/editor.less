@@ -1,4 +1,13 @@
-@import "includes/_mixins.less";
-@import "includes/_variables.less";
-@import "includes/_fonts.less";
-@import "includes/_text.less";
+/**
+ * Override the .editor mixin to include the styles in the editor CSS file
+ */
+.editor(@rules) {
+	@rules();
+}
+
+@import "includes/abstracts/_mixin-library.less";
+@import "includes/abstracts/_mixins.less";
+@import "includes/abstracts/_variables.less";
+
+@import "includes/base/_webfonts.less";
+@import "includes/base/_typography.less";
