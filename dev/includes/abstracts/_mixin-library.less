@@ -1,4 +1,4 @@
-/* less-mixins.less v1.3.0 | MIT License | github.com/randybruder/_s_starter */
+/* less-mixins.less v1.6.0 | MIT License | github.com/randallbruder/_s_starter */
 
 /* LESS Mixins
 	========================================================================== */
@@ -39,6 +39,17 @@
 }
 
 /**
+ * font size mixin
+ * @link: https://github.com/WordPress/gutenberg/issues/11043#issuecomment-458890194
+ * Rather than a hacky workaround to try and set the :root/html font-size to 62.5%, just rely on a 100% and use this mixin to calculate rem values.
+ */
+.font-size(@sizeValue:18) {
+	@remValue: (@sizeValue/16);
+	font-size: ~"@{sizeValue}px"; 
+	font-size: ~"@{remValue}rem";
+}
+ 
+/**
  * Two mixins for targeting a specific class on the <body> or <html> tags
  * When using, don't include quotes around the class
  */
@@ -48,6 +59,18 @@
 
 .html(@class; @rules) {
 	html.@{class} & { @rules(); }
+}
+
+/**
+ * Mixin for removing scrollbar from an element
+ */
+.no-scrollbar() {
+	scrollbar-width: none; /* Firefox */
+	-ms-overflow-style: none;  /* IE 10+ */
+	&::-webkit-scrollbar {
+		width: 0px;
+		background: transparent; /* Chrome/Safari/Webkit */
+	}
 }
 
 /**
@@ -88,7 +111,13 @@
 }
 
 /**
- * Media query for macOS Mojave Dark Mode (currently only supported in Safari Technology Preview, will be supported in Safari in macOS 10.14.4+)
+ * Editor specific styles. This mixin will output nothing in the main css file, but an override of this mixin in the editor.less file does output the rules
+ */
+.editor(@rules) {
+}
+
+/**
+ * Media query for system dark mode
  */
 .darkmode(@rules) {
 	@media (prefers-color-scheme: dark) {
@@ -97,7 +126,7 @@
 }
 
 /**
- * Media query for users with the Reduced Motion setting enabled
+ * Media query for users with the reduced motion accessibility setting enabled
  */
 .reducedmotion(@rules) {
 	@media (prefers-reduced-motion: reduce) {
@@ -106,7 +135,7 @@
 }
 
 /**
- * Media query for users with the Reduced Transparency setting enabled
+ * Media query for users with the reduced transparency accessibility setting enabled
  */
 .reducedtransparency(@rules) {
 	@media (prefers-reduced-transparency: reduce) {
@@ -115,7 +144,7 @@
 }
 
 /**
- * Media query for users using Reduced Motion
+ * Media query for users with the inverted colors accessibility option is enabled
  */
 .invertedcolors(@rules) {
 	@media (inverted-colors: inverted) {
@@ -124,11 +153,28 @@
 }
 
 /**
- * Mixin for hiding a certain element on Wordpress if the user isn't logged in (for development testing.)
+ * Mixin for hiding a certain element on WordPress if the user isn't logged in (useful for development testing.)
  */
 .logged-in() {
 	display: none;
 	.body(logged-in; {
 		display: block;
 	});
+}
+
+/**
+ * Hides an element from the page, but keeps it accessible for screen readers
+ * @link: https://kittygiraudel.com/2021/02/17/hiding-content-responsibly/#the-sr-only-class
+ */
+#sr-only {
+	border: 0 !important;
+	clip: rect(1px, 1px, 1px, 1px) !important;
+	-webkit-clip-path: inset(50%) !important;
+	clip-path: inset(50%) !important;
+	height: 1px !important;
+	overflow: hidden !important;
+	padding: 0 !important;
+	position: absolute !important;
+	width: 1px !important;
+	white-space: nowrap !important;
 }

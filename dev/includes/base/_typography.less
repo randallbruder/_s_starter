@@ -1,0 +1,54 @@
+:root {
+	// Setting a default percentage to use apparent rem values for type sizes
+	// @link: https://stackoverflow.com/a/43131958/3339591
+	font-size: 62.5%;
+}
+
+html {
+	-webkit-font-smoothing: antialiased;
+	-moz-font-smoothing: greyscale;
+	-moz-osx-font-smoothing: grayscale;
+	font-smooth: always;
+	font-kerning: normal;
+	font-feature-settings: 'kern' 1;
+}
+
+body {
+	font-family: var(--font);
+	line-height: var(--line-height);
+	font-size: 1.6rem;
+}
+
+p {
+	max-width: 65ch;
+}
+
+h1 {
+	font-family: var(--font-heading);
+	font-weight: var(--heading-bold);
+}
+
+h2 {
+	font-family: var(--font-heading);
+	font-weight: var(--heading-bold);
+}
+
+h3 {
+	font-family: var(--font-heading);
+	font-weight: var(--heading-bold);
+}
+
+h4 {
+	font-family: var(--font-heading);
+	font-weight: var(--heading-bold);
+}
+
+h5 {
+	font-family: var(--font-heading);
+	font-weight: var(--heading-normal);
+}
+
+h6 {
+	font-family: var(--font-heading);
+	font-weight: var(--heading-bold);
+}
