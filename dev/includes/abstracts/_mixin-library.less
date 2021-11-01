@@ -1,4 +1,4 @@
-/* less-mixins.less v1.6.0 | MIT License | github.com/randallbruder/_s_starter */
+/* less-mixins.less v1.7.0 | MIT License | github.com/randallbruder/_s_starter */
 
 /* LESS Mixins
 	========================================================================== */
@@ -16,7 +16,7 @@
 	@font-face {
 		font-family: @font-family;
 		src: url('@{file-path}.woff2') format('woff2'),
-			  url('@{file-path}.woff') format('woff');
+			 url('@{file-path}.woff') format('woff');
 		font-weight: @font-weight;
 		font-style: @font-style;
 	}
@@ -41,7 +41,8 @@
 /**
  * font size mixin
  * @link: https://github.com/WordPress/gutenberg/issues/11043#issuecomment-458890194
- * Rather than a hacky workaround to try and set the :root/html font-size to 62.5%, just rely on a 100% and use this mixin to calculate rem values.
+ * Rather than a hacky workaround to try and set the :root/html font-size to 62.5%,
+ * just rely on a 100% and use this mixin to calculate rem values.
  */
 .font-size(@sizeValue:18) {
 	@remValue: (@sizeValue/16);
@@ -71,6 +72,23 @@
 		width: 0px;
 		background: transparent; /* Chrome/Safari/Webkit */
 	}
+}
+
+/**
+ * Mixins to pair with the "better viewport units" JavaScript code
+ * Includes fallback for browsers that do not support Custom Properties
+ * @link https://css-tricks.com/the-trick-to-viewport-units-on-mobile
+ * @link https://destroytoday.com/blog/100vw-and-the-horizontal-overflow-you-probably-didnt-know-about
+ */
+
+.vh(@property:height; @vh:100) {
+	@{property}: ~"@{vh}vh";
+	@{property}: ~"calc(var(--vh, 1vh) * @{vh})";
+}
+
+.vw(@property:width; @vw:100) {
+	@{property}: ~"@{vw}vw";
+	@{property}: ~"calc(var(--vw, 1vw) * @{vw})";
 }
 
 /**
@@ -111,7 +129,8 @@
 }
 
 /**
- * Editor specific styles. This mixin will output nothing in the main css file, but an override of this mixin in the editor.less file does output the rules
+ * Editor specific styles. This mixin will output nothing in the main css file,
+ * but an override of this mixin in the editor.less file does output the rules
  */
 .editor(@rules) {
 }
@@ -124,6 +143,10 @@
 	  @rules();
 	}
 }
+// Alternate spellings because I'm a dumbass and keep forgetting what I named this mixin
+.dark-mode(@rules)  { .darkmode(@rules); }
+.nightmode(@rules)  { .darkmode(@rules); }
+.night-mode(@rules) { .darkmode(@rules); }
 
 /**
  * Media query for users with the reduced motion accessibility setting enabled
@@ -177,4 +200,84 @@
 	position: absolute !important;
 	width: 1px !important;
 	white-space: nowrap !important;
+}
+
+/**
+ * SEO Helper: A useful supporting class that will help identify certain SEO issues
+ * @link: https://radiatingstar.com/blog/how-to-improve-seo-with-css/
+ */
+
+.seo-helper() {
+	img:not([alt]),
+	img[alt=""],
+	img[alt^=" "],
+	a[href=""],
+	a[href^=" "],
+	a[href="#"],
+	a[rel*="nofollow"],
+	div:empty,
+	span:empty,
+	li:empty,
+	p:empty,
+	td:empty,
+	th:empty,
+	*[title=""],
+	*[class=""],
+	*[id=""] {
+		outline: 2px solid red !important;
+		outline-offset: 3px !important;
+	}
+	head,
+	title:empty,
+	link,
+	meta { 
+		display: block;
+		width: 100%;
+		position: fixed;
+		background-color: #fff;
+		border-bottom: 2px solid red;
+		line-height: 30px;
+		text-align: center;
+		font-weight: bold;
+	}
+	title:empty:before { content: "You've left the <title> empty!" }
+	link:before { content: "You don't have a <title>!" }
+	title ~ link { display: none; }
+	meta[name="description"][content=""]:before,
+	meta[name="description"][content=" "]:before { content: "You've left description empty!"; }
+}
+
+/**
+ * Specify the dimensions of an object more easily.
+ * @link: http://getpreboot.com/#mixins-sizing
+ */
+ 
+.size(@width, @height) {
+	width: @width;
+	height: @height;
+}
+
+.square(@size) {
+	.size(@size, @size);
+}
+
+/**
+ * Easily truncate text with an ellipsis with a single mixin. Requires element to be block or inline-block level.
+ * @link: http://getpreboot.com/#mixins-truncating
+ */
+
+.text-truncate() {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/**
+ * Conditional Property
+ * @link: https://www.ishadeed.com/article/conditional-border-radius
+ */
+
+.conditionalProp(@property; @lessThanViewportWidth; @equalsViewportWidth; @tolerance: 4px) {
+	@{property}: max(@equalsViewportWidth, min(@lessThanViewportWidth, calc((100vw - @tolerance - 100%) * 9999)));
+	@{property}: max(@equalsViewportWidth, min(@lessThanViewportWidth, calc(((var(--vw, 1vw) * 100) - @tolerance - 100%) * 9999)));
 }
