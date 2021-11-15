@@ -5,7 +5,7 @@
 /* eslint-env jquery */
 /* global */
 
-$(document).ready(function($) {
+jQuery(document).ready(function($) {
 	
 	/**
 	 * Better viewport units that aren't affected by mobile browsers' hiding address bars or desktop browsers' vertical scroll bars
