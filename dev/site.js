@@ -17,7 +17,10 @@ $(document).ready(function($) {
 	 * 		height: 100vh; // Fallback for browsers that do not support Custom Properties
 	 * 		height: calc(var(--vh, 1vh) * 100);
 	 * }
-	 *
+	 * Or, with the LESS Mixin:
+	 * .my-element {
+	 *		.vh(height; 100);
+	 * }
 	 */
 	// First we get the viewport height and width and we multiple it by 1% to get a value for a vh unit
 	var vh = window.innerHeight * 0.01;
