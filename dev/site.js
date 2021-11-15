@@ -2,8 +2,10 @@
  * File site.js.
  *
  */
+/* eslint-env jquery */
+/* global */
 
-jQuery(document).ready(function($) {
+$(document).ready(function($) {
 	
 	/**
 	 * Better viewport units that aren't affected by mobile browsers' hiding address bars or desktop browsers' vertical scroll bars
@@ -35,7 +37,7 @@ jQuery(document).ready(function($) {
 	
 	
 	/**
-	 * Check all links for external URLs
+	 * Check all links for external URLs, and add a helper class and an _blank target
 	 */
 	$('a').each(function() {
 		var a = new RegExp('/' + window.location.host + '/');
@@ -47,3 +49,9 @@ jQuery(document).ready(function($) {
 	});
 
 });
+
+function getRandomInt(min, max) {
+	min = Math.ceil(min);
+	max = Math.floor(max);
+	return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive 
+}
