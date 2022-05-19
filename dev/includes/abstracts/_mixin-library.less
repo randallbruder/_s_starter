@@ -45,9 +45,9 @@
  * just rely on a 100% and use this mixin to calculate rem values.
  */
 .font-size(@sizeValue:18) {
-	@remValue: (@sizeValue/16);
-	font-size: ~"@{sizeValue}px"; 
-	font-size: ~"@{remValue}rem";
+	@remValue: (unit(@sizeValue)/16);
+	font-size: unit(unit(@sizeValue), px);
+	font-size: unit(@remValue, rem);
 }
  
 /**
