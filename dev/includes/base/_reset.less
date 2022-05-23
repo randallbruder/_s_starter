@@ -1,0 +1,270 @@
+/* _reset.less v0.1.0 | MIT License | github.com/randallbruder/_s_starter */
+
+/*
+	Randall Bruder's Custom CSS Reset
+	
+	Code sampled from:
+	@link: https://www.joshwcomeau.com/css/custom-css-reset/
+	@link: https://github.com/sindresorhus/modern-normalize/
+	@link: https://piccalil.li/blog/a-modern-css-reset/
+	@link: https://meyerweb.com/eric/tools/css/reset/
+*/
+
+/*
+Document
+========
+*/
+
+	/*
+	Use a more intuitive box-sizing model.
+	*/
+	
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
+	
+	/*
+	Remove default margin
+	*/
+	
+	* {
+		margin: 0;
+	}
+	
+	/*
+	Allow percentage-based heights in the application
+	*/
+	
+	html,
+	body {
+		height: 100%;
+	}
+
+/*
+Typography
+==========
+*/
+
+	/*
+	Disable subpixel antialiasing on macOS browsers, to improve text rendering
+	*/
+	
+	body {
+		-webkit-font-smoothing: antialiased;
+	}
+	
+	/*
+	Improve consistency of default fonts in all browsers,
+	Correct the odd 'em' font sizing in all browsers.
+	*/
+	
+	body {
+		font-family:
+			system-ui,
+			-apple-system, /* Firefox supports this but not yet `system-ui` */
+			'Segoe UI',
+			Roboto,
+			Helvetica,
+			Arial,
+			sans-serif,
+			'Apple Color Emoji',
+			'Segoe UI Emoji';
+	}
+	
+	code,
+	kbd,
+	samp,
+	pre {
+		font-size: 1em;
+	}
+	
+	/*
+	Use calc to figure out optimal line-height
+		@link: https://kittygiraudel.com/2020/05/18/using-calc-to-figure-out-optimal-line-height/
+		@link: https://codepen.io/randybruder/pen/dyVbKqN
+	*/
+	
+	* {
+		line-height: calc(8px + 2ex);
+	}
+	
+	/**
+	Prevent adjustments of font size after orientation changes in iOS.
+	Use a more readable tab size (opinionated).
+	*/
+	
+	html {
+		-webkit-text-size-adjust: 100%;
+		-moz-tab-size: 4;
+		tab-size: 4;
+	}
+	
+	/*
+	Avoid text overflows from long URLs or long words
+	*/
+	
+	* {
+		overflow-wrap: break-word;
+		hyphens: auto;
+	}
+	
+	/*
+	Add the correct text decoration in Chrome, Edge, and Safari.
+	*/
+	
+	abbr[title] {
+		text-decoration: underline dotted;
+	}
+	
+	/*
+	Add the correct font weight in Edge and Safari.
+	*/
+	
+	b,
+	strong {
+		font-weight: bolder;
+	}
+	
+	/**
+	Prevent 'sub' and 'sup' elements from affecting the line height in all browsers.
+	*/
+	
+	sub,
+	sup {
+		font-size: 75%;
+		line-height: 0;
+		position: relative;
+		vertical-align: baseline;
+	}
+	
+	sub {
+		bottom: -0.25em;
+	}
+	
+	sup {
+		top: -0.5em;
+	}
+
+/*
+Elements
+========
+*/
+	
+	/*
+	Improve media defaults
+	*/
+	
+	img,
+	picture,
+	video,
+	canvas,
+	svg {
+		display: block;
+		max-width: 100%;
+	}
+	
+	/*
+	Horizontal Rules
+	Add the correct height for in Firefox,
+	Correct the inheritance of border color in Firefox, (https://bugzilla.mozilla.org/show_bug.cgi?id=190655)
+	Override the default inset border-style
+	*/
+	
+	hr {
+		height: 0;
+		color: inherit;
+		border-style: solid;
+	}
+	
+	/*
+	Remove the focus inner border and padding in Firefox.
+	*/
+	
+	::-moz-focus-inner {
+		border-style: none;
+		padding: 0;
+	}
+	
+	/*
+	Restore the focus styles unset by the previous rule.
+	*/
+	
+	:-moz-focusring {
+		outline: 1px dotted ButtonText;
+	}
+
+/*
+Forms
+=====
+*/
+
+	/*
+	Have form elements inherit typographical styles
+	Remove the inheritance of text transform in Edge and Firefox
+	*/
+	
+	input,
+	button,
+	textarea,
+	select,
+	optgroup {
+		font: inherit;
+		text-transform: none;
+	}
+
+	/*
+	Correct the inability to style clickable types in iOS and Safari.
+	*/
+	
+	button,
+	[type='button'],
+	[type='reset'],
+	[type='submit'] {
+		-webkit-appearance: button;
+	}
+	
+	/*
+	Remove the additional ':invalid' styles in Firefox.
+	See: https://github.com/mozilla/gecko-dev/blob/2f9eacd9d3d995c937b4251a5557d95d494c9be1/layout/style/res/forms.css#L728-L737
+	*/
+	
+	:-moz-ui-invalid {
+		box-shadow: none;
+	}
+	
+	/*
+	Correct the cursor style of increment and decrement buttons in Safari.
+	*/
+	
+	::-webkit-inner-spin-button,
+	::-webkit-outer-spin-button {
+		height: auto;
+	}
+	
+	/*
+	Correct the odd appearance in Chrome and Safari, and correct the outline style in Safari.
+	*/
+	
+	[type='search'] {
+		-webkit-appearance: textfield;
+		outline-offset: -2px;
+	}
+	
+	/*
+	Remove the inner padding in Chrome and Safari on macOS.
+	*/
+	
+	::-webkit-search-decoration {
+		-webkit-appearance: none;
+	}
+	
+	/*
+	Correct the inability to style clickable types in iOS and Safari, and change font properties to 'inherit' in Safari.
+	*/
+	
+	::-webkit-file-upload-button {
+		-webkit-appearance: button;
+		font: inherit;
+	}
