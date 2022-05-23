@@ -1,4 +1,4 @@
-/* less-mixins.less v1.7.0 | MIT License | github.com/randallbruder/_s_starter */
+/* less-mixins.less v1.8.0 | MIT License | github.com/randallbruder/_s_starter */
 
 /* LESS Mixins
 	========================================================================== */
@@ -200,51 +200,6 @@
 	position: absolute !important;
 	width: 1px !important;
 	white-space: nowrap !important;
-}
-
-/**
- * SEO Helper: A useful supporting class that will help identify certain SEO issues
- * @link: https://radiatingstar.com/blog/how-to-improve-seo-with-css/
- */
-
-.seo-helper() {
-	img:not([alt]),
-	img[alt=""],
-	img[alt^=" "],
-	a[href=""],
-	a[href^=" "],
-	a[href="#"],
-	a[rel*="nofollow"],
-	div:empty,
-	span:empty,
-	li:empty,
-	p:empty,
-	td:empty,
-	th:empty,
-	*[title=""],
-	*[class=""],
-	*[id=""] {
-		outline: 2px solid red !important;
-		outline-offset: 3px !important;
-	}
-	head,
-	title:empty,
-	link,
-	meta { 
-		display: block;
-		width: 100%;
-		position: fixed;
-		background-color: #fff;
-		border-bottom: 2px solid red;
-		line-height: 30px;
-		text-align: center;
-		font-weight: bold;
-	}
-	title:empty:before { content: "You've left the <title> empty!" }
-	link:before { content: "You don't have a <title>!" }
-	title ~ link { display: none; }
-	meta[name="description"][content=""]:before,
-	meta[name="description"][content=" "]:before { content: "You've left description empty!"; }
 }
 
 /**
