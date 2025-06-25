@@ -51,15 +51,37 @@
 }
  
 /**
- * Two mixins for targeting a specific class on the <body> or <html> tags
+ * Mixins for targeting specific class(es) on the <body> or <html> tags
  * When using, don't include quotes around the class
  */
 .body(@class; @rules) {
 	body.@{class} & { @rules(); }
 }
 
+.body(@class; @class2; @rules) {
+	body.@{class} & { @rules(); }
+	body.@{class2} & { @rules(); }
+}
+
+.body(@class; @class2; @class3; @rules) {
+	body.@{class} & { @rules(); }
+	body.@{class2} & { @rules(); }
+	body.@{class3} & { @rules(); }
+}
+
 .html(@class; @rules) {
 	html.@{class} & { @rules(); }
+}
+
+.html(@class; @class2; @rules) {
+	html.@{class} & { @rules(); }
+	html.@{class2} & { @rules(); }
+}
+
+.html(@class; @class2; @class3; @rules) {
+	html.@{class} & { @rules(); }
+	html.@{class2} & { @rules(); }
+	html.@{class3} & { @rules(); }
 }
 
 /**
